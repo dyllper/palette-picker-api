@@ -7,7 +7,7 @@ const parseFile = req => new Promise((resolve, reject) => {
   form.type = 'mutlipart';
   form.parse(req, (err, fields, files) => {
     if (err) reject(err);
-    resolve(files.fileupload);
+    resolve(files.image);
   });
 });
 

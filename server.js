@@ -1,8 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 
 const uploadController = require('./controllers/uploadController');
 
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+};
+
 const app = express();
+
+app.use(cors(corsOptions));
 
 app.get('/', (req, res) => {
   res.send('Hello, world!');
