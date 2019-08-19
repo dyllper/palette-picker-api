@@ -4,7 +4,6 @@ const Vibrant = require('node-vibrant');
 const { uploadDir } = require('../config');
 
 const parseFile = req => new Promise((resolve, reject) => {
-  console.log(uploadDir);
   const form = new formidable.IncomingForm({
     uploadDir,
     keepExtensions: true,
