@@ -1,13 +1,22 @@
+const path = require('path');
+const fs = require('fs');
 const formidable = require('formidable');
 const Vibrant = require('node-vibrant');
 
 const parseFile = req => new Promise((resolve, reject) => {
-  const form = new formidable.IncomingForm();
-  form.keepExtensions = true;
-  form.type = 'mutlipart';
+  const uploadDir = path.join(__dirname, '/../public');
+  const form = new formidable.IncomingForm({
+    uploadDir,
+    keepExtensions: true,
+    type: 'multipart',
+  });
   form.parse(req, (err, fields, files) => {
     if (err) reject(err);
-    resolve(files.image);
+    const { image } = files;
+    const newFileName = `${uploadDir}\\${image.name}`;
+    fs.renameSync(image.path, newFileName);
+    image.path = newFileName;
+    resolve(image);
   });
 });
 
@@ -34,7 +43,7 @@ const uploadImage = (req, res) => {
   parseFile(req)
     .then(file => Vibrant.from(file.path).getPalette())
     .then(palette => getHexValues(palette))
-    .then(hexColors => res.json(hexColors))
+    .then(hexColors => res.json({ hexColors }))
     .catch(err => res.status(400).json(err));
 };
 

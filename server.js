@@ -12,6 +12,8 @@ const app = express();
 
 app.use(cors(corsOptions));
 
+app.use('/images', express.static('public'));
+
 app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
