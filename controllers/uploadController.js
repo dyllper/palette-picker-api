@@ -1,10 +1,10 @@
-const path = require('path');
 const fs = require('fs');
 const formidable = require('formidable');
 const Vibrant = require('node-vibrant');
+const { uploadDir } = require('../config');
 
 const parseFile = req => new Promise((resolve, reject) => {
-  const uploadDir = path.join(__dirname, '/../public');
+  console.log(uploadDir);
   const form = new formidable.IncomingForm({
     uploadDir,
     keepExtensions: true,

@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
-  uploadDir: 'C:/Users/Dylan Perkins/Desktop/',
+  uploadDir: path.join(__dirname, '/public'),
 };
