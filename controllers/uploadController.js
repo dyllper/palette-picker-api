@@ -12,7 +12,7 @@ const parseFile = req => new Promise((resolve, reject) => {
   form.parse(req, (err, fields, files) => {
     if (err) reject(err);
     const { image } = files;
-    const newFileName = `${uploadDir}\\${image.name}`;
+    const newFileName = `${uploadDir}/${image.name}`;
     fs.renameSync(image.path, newFileName);
     image.path = newFileName;
     resolve(image);
