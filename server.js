@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 
+const PORT = process.env.PORT || 4000;
+
 const uploadController = require('./controllers/uploadController');
 
 const corsOptions = {
@@ -22,7 +24,7 @@ app.post('/upload', (req, res) => {
   uploadController.uploadImage(req, res);
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   // eslint-disable-next-line no-console
-  console.log(`app is running on port ${process.env.PORT}`);
+  console.log(`app is running on port ${PORT}`);
 });
