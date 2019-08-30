@@ -1,5 +1,5 @@
 const path = require('path');
 
 module.exports = {
-  uploadDir: path.join(__dirname, '/public'),
+  uploadDir: path.join(__dirname, '/images'),
 };
